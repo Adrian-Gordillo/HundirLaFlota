@@ -3,11 +3,25 @@ package hundirLaFlota;
 public class tablero {
 
     private String tablero[][] = new String[8][8];
-}
 
-/*
- * Dos tableros de 8x8 cada uno
- * Disparos
- * 1 si toca barco 0 si toca agua
- * que la máquina ponga los barcos de manera aleatoria en el tablero
- */
+    public void disparo(int fila, int columna) {
+        if (tablero[fila][columna] == null) {
+            System.out.println("Agua");
+        } else {
+            System.out.println("HIT");
+        }
+    }
+
+    public void colocarBarco(Barco barco, int fila, int columna, String direccion) {
+
+        if (direccion.equals("HORIZONTAL")) {
+            for (int i = 0; i < barco.getTamaño(); i++) {
+                tablero[fila][columna + i] = barco.getNombre();
+            }
+        } else if (direccion.equals("VERTICAL")) {
+            for (int i = 0; i < barco.getTamaño(); i++) {
+                tablero[fila + i][columna] = barco.getNombre();
+            }
+        }
+    }
+}
