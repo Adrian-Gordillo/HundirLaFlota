@@ -7,6 +7,7 @@ public class Account {
     private int victorias;
 
     public Account(String playerName) {
+
         this.playerName = playerName;
         this.partidasJugadas = 0;
         this.victorias = 0;
@@ -14,6 +15,7 @@ public class Account {
     }
 
     public void añadirResultado(boolean victoria) {
+
         this.partidasJugadas++;
         if (victoria == true) {
             this.victorias++;
@@ -21,6 +23,7 @@ public class Account {
     }
 
     public double porcentajeVictorias() {
+
         if (this.partidasJugadas == 0) {
             return 0.0;
         } else {
@@ -29,14 +32,17 @@ public class Account {
     }
 
     public void setName(String newName) {
+
         this.playerName = newName;
     }
 
     public String getPlayerName() {
+
         return this.playerName;
     }
 
     public void getEstadisticas(String playerName) {
+
         System.out
                 .println("Numero de victorias: " + "|" + this.victorias + "% victorias:" + porcentajeVictorias() + "%");
     }

@@ -6,6 +6,7 @@ public class Barco {
     private int tamaño;
 
     private Barco(String nombre, int tamaño) {
+
         this.nombre = nombre;
         this.tamaño = tamaño;
     }
