@@ -1,34 +1,75 @@
-Aplicación con salida por pantalla que simula el famoso juego de mesa Hundir la Flota
+# Hundir la Flota - Proyecto Java
 
-Problemas:
+Este repositorio contiene una implementación en Java del clásico juego de mesa "Hundir la Flota", diseñado para ser ejecutado desde la consola. El proyecto ha sido desarrollado como una actividad de clase para practicar conceptos de Programación Orientada a Objetos (POO), manejo de arrays y lógica de control.
 
-account.java
+## Descripción del Proyecto
 
-- Variables private para evitar que modifiquen desde el main: Nombre, cantidad de partidas, porcentaje de partidas.
+El juego consiste en un tablero de 8x8 donde el ordenador coloca una flota de barcos de manera aleatoria y oculta. El jugador debe introducir coordenadas (fila y columna) para intentar impactar y hundir todos los barcos enemigos antes de que se agoten sus intentos.
 
-- Crear el archivo csv
+El sistema cuenta con gestión de perfiles de usuario para almacenar estadísticas básicas como el número de victorias y el porcentaje de éxito.
 
-- Añadir el nombre del jugador / cantidad de partidas / y porcentaje de victorias
+## Estructura del Proyecto
 
-- Comprobar si existe el jugador si existe aumentar cantidad de partidas y recalcular el porcentaje de victorias
+El código fuente se encuentra organizado bajo el paquete `hundirLaFlota` y se divide en las siguientes clases:
 
-- No permitir que en el archivo se creen dos veces el mismo nombre de jugador
+### 1. HundirLaFlota.java (Main)
 
-barcos.java
+Es la clase principal que contiene el método `main`. Se encarga de:
 
-- Variables private: Cada uno de los barcos (evitamos que desde el main modifiquen la vida de los barcos y por ejemplo digan que todos los barcos tienen 1 de vida)
+- Gestionar el menú principal del juego (Jugar, Ver estadísticas, Salir).
+- Controlar el bucle de la partida.
+- Instanciar el tablero y la flota de barcos.
+- Gestionar la entrada de datos por teclado (Scanner).
 
-- Debería crear los objetos barco con sus respectivos tamaños y acoplarlos a un array bidimensional
-  un array bidimensional es un array de arrays por lo tanto los barcos tendrian que ser arrays bidimensionales con sus respectivos tamaños
+### 2. Tablero.java
 
-- Darle a la maquina los parametros necesarios para que te coloque los barcos en al rray
+Representa el escenario de juego. Sus responsabilidades son:
 
-- Que la máquina coloque sus propios barcos de manera aleatoria o Pseudoaleatoria si es necesario
+- Almacenar el estado lógico de los barcos (matriz `tablero`).
+- Almacenar el estado visual para el jugador (matriz `mapa`: agua o impactos).
+- **Colocación Aleatoria:** Algoritmo que posiciona los barcos horizontal o verticalmente validando que no se superpongan ni salgan de los límites.
+- Procesar los disparos y determinar si es "Agua" o "Impacto".
 
-tablero.java
+### 3. Barco.java
 
-- Variables private : tablero
+Clase modelo que define las propiedades de los barcos. Incluye métodos estáticos para crear los diferentes tipos de naves:
 
-- arrays bidimensionales de 8 x 8 para los tableros
+- Portaaviones (Tamaño 5)
+- Acorazado (Tamaño 4)
+- Crucero (Tamaño 3)
+- Submarino (Tamaño 3)
+- Destructor (Tamaño 2)
 
-- me gustaria crear una interfaz más visual que te enseñe tu tablero y si la maquina a acertado en tus barcos o no y un mapa de tus disparos para ver si has acertado tú
+### 4. Account.java
+
+Clase encargada de la persistencia de datos del jugador durante la ejecución (sesión):
+
+- Almacena el nombre del jugador.
+- Contabiliza partidas jugadas y victorias.
+- Calcula el porcentaje de victorias.
+
+## Reglas del Juego
+
+1.  El tablero tiene unas dimensiones de 8x8 (Filas 0-7, Columnas 0-7).
+2.  La flota enemiga se genera automáticamente en cada nueva partida.
+3.  Los barcos se colocan únicamente en posición **Vertical** u **Horizontal** (nunca en diagonal).
+4.  El jugador dispone de un número limitado de intentos (por defecto 40) para hundir toda la flota.
+5.  Si el jugador acierta un disparo, no pierde intentos.
+6.  El juego termina cuando se hunden todos los barcos (Victoria) o se acaban los intentos (Derrota).
+
+## Requisitos y Ejecución
+
+### Requisitos
+
+- Java Development Kit (JDK) 8 o superior.
+- Un entorno de desarrollo (IDE) como Visual Studio Code, IntelliJ o Eclipse.
+
+### Cómo ejecutar en Visual Studio Code
+
+1.  Clonar o descargar este repositorio.
+2.  Abrir la carpeta del proyecto en VS Code.
+3.  Asegurarse de que la estructura de carpetas respeta el paquete `hundirLaFlota`.
+4.  Abrir el archivo `src/hundirLaFlota/HundirLaFlota.java`.
+5.  Pulsar "Run" o ejecutar desde la terminal.
+
+Desarrollado como actividad práctica de desarrollo de aplicaciones en Java.
